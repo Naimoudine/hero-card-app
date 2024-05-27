@@ -1,0 +1,29 @@
+@tailwind base;
+@layer base {
+  @font-face {
+    font-family: "Marvel";
+    src: url('./assets/fonts/marvel\ 2.otf') format("opentype");
+  }
+
+  .logo {
+    @apply font-Marvel
+  }
+
+  body {
+    @apply h-screen w-screen;
+  }
+
+  #root {
+    @apply h-full w-full;
+  }
+}
+@tailwind components;
+@layer components {
+  .searchLink {
+    @apply flex items-center px-2 py-1 border-b border-gray-300 hover:bg-gray-400
+  }
+  .searchLink:last-of-type {
+    @apply border-0
+  }
+}
+@tailwind utilities;
