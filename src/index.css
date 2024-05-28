@@ -2,15 +2,15 @@
 @layer base {
   @font-face {
     font-family: "Marvel";
-    src: url('./assets/fonts/marvel\ 2.otf') format("opentype");
+    src: url('./assets/fonts/marvel.woff2') format("woff2");
   }
 
   .logo {
-    @apply font-Marvel
+    @apply font-Marvel text-2xl text-white
   }
 
   body {
-    @apply h-screen w-screen;
+    @apply h-screen w-screen  bg-[#eb1139]; 
   }
 
   #root {

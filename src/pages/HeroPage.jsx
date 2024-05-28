@@ -14,7 +14,7 @@ export default function HeroPage() {
 
   return (
     <div className="h-full w-full flex items-center justify-center">
-      <Tilt glareEnable={true}>
+      <Tilt glareEnable={true} glareBorderRadius="0.5rem">
         <HeroCard hero={heroData[0]} />
       </Tilt>
     </div>

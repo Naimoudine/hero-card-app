@@ -39,7 +39,7 @@ export default function NavBar({ location, heroData }) {
 
   return (
     <nav className="h-[10dvh] flex items-center justify-between px-4">
-      <Link to="/" className="logo">HeroApp</Link>
+      <Link to="/" className="logo">MyHeroCard</Link>
       {location !== '/'
         ? (
           <div className="relative">
@@ -47,11 +47,11 @@ export default function NavBar({ location, heroData }) {
               type="text"
               name=""
               id=""
-              className="border-2 border-gray-200 mr-2"
+              className="rounded-md mr-2 text-sm p-1.5"
               value={searchValue}
               onChange={e => setSearchValue(e.target.value)}
+              placeholder="Enter hero name"
             />
-            <button type="button">Search</button>
             <div className="flex flex-col w-full bg-gray-200 absolute left-0 max-h-[150px] overflow-scroll">
               {searchHeroList?.map(hero => (
                 <div key={hero?.id} className="searchLink" onClick={e => handleSelectedHero(e)} id={hero?.id}>
