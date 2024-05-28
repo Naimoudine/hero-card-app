@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation, useOutletContext } from 'react-router-dom'
+import Tilt from 'react-parallax-tilt'
 import HeroCard from '../Components/HeroCard'
 
 export default function HeroPage() {
@@ -13,7 +14,9 @@ export default function HeroPage() {
 
   return (
     <div className="h-full w-full flex items-center justify-center">
-      <HeroCard hero={heroData[0]} />
+      <Tilt glareEnable={true}>
+        <HeroCard hero={heroData[0]} />
+      </Tilt>
     </div>
   )
 }

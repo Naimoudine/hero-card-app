@@ -5,6 +5,7 @@ export default function HomePage() {
   const [searchData, setSearchData] = useState('')
   const [heroList, setHeroList] = useState()
   const [loading, setLoading] = useState()
+  const [error, setError] = useState('')
 
   const [heroData, setHeroData, setLocation] = useOutletContext()
 
@@ -12,14 +13,24 @@ export default function HomePage() {
   const location = useLocation()
 
   const fetchHeroes = async () => {
-    const res = await fetch(
-      `${import.meta.env.VITE_API_URL}/${import.meta.env.VITE_API_KEY}/search/${searchData}`,
-    )
-    const data = await res.json()
-    setHeroList(data.results)
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/${import.meta.env.VITE_API_KEY}/search/${searchData}`,
+      )
+      if (!res.ok)
+        throw new Error('Seems like there\'s is an error while trying to get the data')
+      const data = await res.json()
+      if (data.response === 'success')
+        setHeroList(data.results)
+      else setError(data.error)
+      if (data)
+        setLoading(false)
+    }
+    catch (error) {
+      console.error(error)
+    }
+
     setSearchData('')
-    if (data)
-      setLoading(false)
   }
 
   const handleSearch = () => {
@@ -57,18 +68,18 @@ export default function HomePage() {
         <ul className="sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-12">
           { loading
             ? 'Loading'
-            : heroList
-              ? heroList?.map(hero => (
-                <li key={hero?.id}>
-                  <div className="flex mb-4 sm:mb-0 border-2 rounded-md p-2 min-h-[16rem] max-h-[16rem] w-[12rem]" style={{ background: `url(${hero?.image?.url}) center/cover` }} role="presentation" id={hero?.id} onClick={e => handleSelectedHero(e)}>
-                    <div className="self-end">
-                      <h3 className="text-white">{hero?.name}</h3>
-                      <p className="text-white">{hero?.biography['full-name']}</p>
+            : !error
+                ? heroList?.map(hero => (
+                  <li key={hero?.id}>
+                    <div className="flex mb-4 sm:mb-0 border-2 rounded-md p-2 min-h-[16rem] max-h-[16rem] w-[12rem]" style={{ background: `url(${hero?.image?.url}) center/cover` }} role="presentation" id={hero?.id} onClick={e => handleSelectedHero(e)}>
+                      <div className="self-end">
+                        <h3 className="text-white">{hero?.name}</h3>
+                        <p className="text-white">{hero?.biography['full-name']}</p>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              ))
-              : 'No hero found, please search for a new one'}
+                  </li>
+                ))
+                : <h1>{error}</h1>}
         </ul>
       </div>
     </div>

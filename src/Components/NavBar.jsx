@@ -8,13 +8,23 @@ export default function NavBar({ location, heroData }) {
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetch(
-      `${import.meta.env.VITE_API_URL}/${import.meta.env.VITE_API_KEY}/search/${searchValue}`,
-    )
-      .then(res => res.json())
-      .then((data) => {
-        setSearchHeroList(data.results)
-      })
+    try {
+      fetch(
+        `${import.meta.env.VITE_API_URL}/${import.meta.env.VITE_API_KEY}/search/${searchValue}`,
+      )
+        .then((res) => {
+          if (!res.ok)
+            throw new Error('Seems like there\'s is an error while trying to get the data')
+          return res.json()
+        })
+        .then((data) => {
+          if (data.response === 'success')
+            setSearchHeroList(data.results)
+        })
+    }
+    catch (error) {
+      console.error(error)
+    }
   }, [searchValue])
 
   const handleSelectedHero = (e) => {
