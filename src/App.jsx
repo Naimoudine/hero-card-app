@@ -5,14 +5,18 @@ import NavBar from './Components/NavBar'
 
 function App() {
   const [heroData, setHeroData] = useState()
-  const [location, setLocation] = useState('')
+  const [favorites, setFavorites] = useState([])
+  const [collection, setCollection] = useState([])
+
   return (
     <>
-      <header>
-        <NavBar location={location} heroData={setHeroData} />
-      </header>
-      <main className="h-[90dvh]">
-        <Outlet context={[heroData, setHeroData, setLocation]} />
+      <main className="h-full w-full flex">
+        <aside>
+          <NavBar heroData={setHeroData} />
+        </aside>
+        <div className="w-full">
+          <Outlet context={[heroData, setHeroData, favorites, setFavorites, collection, setCollection]} />
+        </div>
       </main>
     </>
   )

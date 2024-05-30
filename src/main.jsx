@@ -5,6 +5,12 @@ import App from './App.jsx'
 import './index.css'
 import HomePage from './pages/HomePage.jsx'
 import HeroPage from './pages/HeroPage.jsx'
+import FavoritesPage from './pages/FavoritesPage.jsx'
+
+function getLocalStorageData() {
+  const localHero = JSON.parse(localStorage.getItem('hero'))
+  return localHero
+}
 
 const router = createBrowserRouter([
   {
@@ -17,6 +23,11 @@ const router = createBrowserRouter([
       {
         path: '/hero/:id',
         element: <HeroPage />,
+        loader: getLocalStorageData,
+      },
+      {
+        path: '/favorites',
+        element: <FavoritesPage />,
       },
     ],
   },

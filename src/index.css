@@ -27,3 +27,11 @@
   }
 }
 @tailwind utilities;
+@layer utilities {
+  .nav-item {
+    @apply mb-4
+  }
+  .cta {
+    @apply px-4 py-2 rounded-lg
+  }
+}
