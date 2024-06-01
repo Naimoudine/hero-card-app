@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
 import './index.css'
 import HomePage from './pages/HomePage.jsx'
+import SearchPage from './pages/SearchPage.jsx'
 import HeroPage from './pages/HeroPage.jsx'
 import FavoritesPage from './pages/FavoritesPage.jsx'
 
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <HomePage />,
+      },
+      {
+        path: '/search',
+        element: <SearchPage />,
       },
       {
         path: '/hero/:id',
