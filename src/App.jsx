@@ -14,7 +14,7 @@ function App() {
           <NavBar />
         </aside>
         <div className="w-full">
-          <Outlet context={[selectedHeroData, setSelectedHeroData, favorites, setFavorites, collection, setCollection]} />
+          <Outlet context={{ selectedHeroData, setSelectedHeroData, favorites, setFavorites, collection, setCollection }} />
         </div>
       </main>
     </>

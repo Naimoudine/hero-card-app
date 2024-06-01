@@ -7,7 +7,7 @@ export default function HomePage() {
   const [loading, setLoading] = useState()
   const [errorMsg, setErrorMsg] = useState('')
 
-  const [selectedHeroData, setSelectedHeroData, favorites, setFavorites] = useOutletContext()
+  const { setSelectedHeroData } = useOutletContext()
 
   const navigate = useNavigate()
 

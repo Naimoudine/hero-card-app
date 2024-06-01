@@ -5,7 +5,7 @@ import HeroCard from '../Components/HeroCard'
 
 export default function HeroPage() {
   const [favMsg, setFavMsg] = useState('')
-  const [selectedHeroData, setSelectedHeroData, favorites, setFavorites, collection, setCollection] = useOutletContext()
+  const { selectedHeroData, favorites, setFavorites } = useOutletContext()
 
   const loaderData = useLoaderData()
 

@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import FavPresentationCard from '../Components/FavPresentationCard'
 
 export default function FavoritesPage() {
-  const [heroData, setHeroData, favorites, setFavorites, collection, setCollection] = useOutletContext()
+  const { favorites } = useOutletContext()
 
   return (
     <div className="pt-8 px-4">
