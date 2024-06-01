@@ -1,23 +1,17 @@
+import { useEffect, useState } from 'react'
 import { useNavigate, useOutletContext } from 'react-router-dom'
 
-export default function PresentationCard({ hero }) {
-  const [heroData, setHeroData, favorites, setFavorites] = useOutletContext()
+export default function FavPresentationCard({ hero }) {
+  const [selectedHeroData, setSelectedHeroData, favorites, setFavorites] = useOutletContext()
 
   const navigate = useNavigate()
-
-  const fetchHero = async (id) => {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/${import.meta.env.VITE_API_KEY}/${id}`)
-    const data = await res.json()
-    setHeroData([data])
-  }
 
   const handleSelectedHero = (e) => {
     const selectedHeroId = e.currentTarget.id
     if (selectedHeroId) {
-      fetchHero(selectedHeroId)
-      localStorage.setItem('hero', JSON.stringify(heroData))
+      setSelectedHeroData(favorites.filter(favorite => favorite.id === selectedHeroId))
+      localStorage.setItem('hero', JSON.stringify(favorites.filter(favorite => favorite.id === selectedHeroId)))
     }
-
     navigate(`/hero/${selectedHeroId}`)
   }
 

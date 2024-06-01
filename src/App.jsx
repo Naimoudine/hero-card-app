@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
-import bg from './assets/images/bg.jpg'
 import NavBar from './Components/NavBar'
 
 function App() {
-  const [heroData, setHeroData] = useState()
+  const [selectedHeroData, setSelectedHeroData] = useState()
   const [favorites, setFavorites] = useState([])
   const [collection, setCollection] = useState([])
 
@@ -12,10 +11,10 @@ function App() {
     <>
       <main className="h-full w-full flex">
         <aside>
-          <NavBar heroData={setHeroData} />
+          <NavBar />
         </aside>
         <div className="w-full">
-          <Outlet context={[heroData, setHeroData, favorites, setFavorites, collection, setCollection]} />
+          <Outlet context={[selectedHeroData, setSelectedHeroData, favorites, setFavorites, collection, setCollection]} />
         </div>
       </main>
     </>

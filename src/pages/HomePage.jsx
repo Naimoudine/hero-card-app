@@ -5,9 +5,9 @@ export default function HomePage() {
   const [searchData, setSearchData] = useState('')
   const [heroList, setHeroList] = useState()
   const [loading, setLoading] = useState()
-  const [error, setError] = useState('')
+  const [errorMsg, setErrorMsg] = useState('')
 
-  const [heroData, setHeroData, favorites, setFavorites] = useOutletContext()
+  const [selectedHeroData, setSelectedHeroData, favorites, setFavorites] = useOutletContext()
 
   const navigate = useNavigate()
 
@@ -21,7 +21,7 @@ export default function HomePage() {
       const data = await res.json()
       if (data.response === 'success')
         setHeroList(data.results)
-      else setError(data.error)
+      else setErrorMsg(data.error)
       if (data)
         setLoading(false)
     }
@@ -44,10 +44,10 @@ export default function HomePage() {
     const selectedHeroId = e.currentTarget.id
     if (selectedHeroId) {
       const selectedHero = heroList.filter(hero => hero.id === selectedHeroId)
-      setHeroData(selectedHero)
+      setSelectedHeroData(selectedHero)
       localStorage.setItem('hero', JSON.stringify(selectedHero))
+      navigate(`/hero/${selectedHeroId}`)
     }
-    navigate(`/hero/${selectedHeroId}`)
   }
 
   useEffect(() => {
@@ -74,7 +74,7 @@ export default function HomePage() {
         <ul className="sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-12">
           { loading
             ? 'Loading'
-            : !error
+            : !errorMsg
                 ? heroList?.map(hero => (
                   <li key={hero?.id}>
                     <div className="flex mb-4 sm:mb-0 border-2 rounded-md p-2 min-h-[16rem] max-h-[16rem] w-[12rem] relative" style={{ background: `url(${hero?.image?.url}) center/cover` }} role="presentation" id={hero?.id} onClick={e => handleSelectedHero(e)}>
@@ -85,7 +85,7 @@ export default function HomePage() {
                     </div>
                   </li>
                 ))
-                : <h1>{error}</h1>}
+                : <h1>{errorMsg}</h1>}
         </ul>
       </div>
     </div>
