@@ -1,6 +1,6 @@
 import { useOutletContext } from 'react-router-dom'
 import { useEffect } from 'react'
-import FavPresentationCard from '../Components/FavPresentationCard'
+import FavPresentationCard from '../components/FavPresentationCard'
 
 export default function FavoritesPage() {
   const { favorites } = useOutletContext()

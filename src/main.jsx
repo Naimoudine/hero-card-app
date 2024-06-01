@@ -4,9 +4,9 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
 import './index.css'
 import HomePage from './pages/HomePage.jsx'
-import SearchPage from './pages/SearchPage.jsx'
 import HeroPage from './pages/HeroPage.jsx'
 import FavoritesPage from './pages/FavoritesPage.jsx'
+import SearchBarModal from './components/SearchBarModal.jsx'
 
 function getLocalStorageData() {
   const localHero = JSON.parse(localStorage.getItem('hero'))
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/search',
-        element: <SearchPage />,
+        element: <SearchBarModal />,
       },
       {
         path: '/hero/:id',

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLoaderData, useLocation, useOutletContext } from 'react-router-dom'
 import Tilt from 'react-parallax-tilt'
-import HeroCard from '../Components/HeroCard'
+import HeroCard from '../components/HeroCard'
 
 export default function HeroPage() {
   const [favMsg, setFavMsg] = useState('')
