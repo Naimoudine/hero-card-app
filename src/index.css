@@ -34,4 +34,10 @@
   .cta {
     @apply px-4 py-2 rounded-lg
   }
+  .search-item {
+    @apply flex items-center p-4 border-b border-gray-200 cursor-pointer
+  }
+  .search-item:last-child {
+    @apply flex items-center p-4 border-b-0 cursor-pointer
+  }
 }
