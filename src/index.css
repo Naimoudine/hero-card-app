@@ -14,7 +14,11 @@
   }
 
   #root {
-    @apply h-full w-full;
+    @apply w-full h-full;
+  }
+
+  h1 {
+    @apply text-4xl text-white font-semibold
   }
 }
 @tailwind components;
@@ -28,6 +32,9 @@
 }
 @tailwind utilities;
 @layer utilities {
+  .page {
+    @apply pt-8 px-4
+  }
   .nav-item {
     @apply mb-4
   }
