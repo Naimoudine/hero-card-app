@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'
 import { useNavigate, useOutletContext } from 'react-router-dom'
 
-export default function FavPresentationCard({ hero }) {
-  const { setSelectedHeroData, favorites } = useOutletContext()
+export default function ColPresentationCard({ hero }) {
+  const { setSelectedHeroData, collection } = useOutletContext()
 
   const navigate = useNavigate()
 

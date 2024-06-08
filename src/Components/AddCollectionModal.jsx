@@ -1,5 +1,6 @@
 import EmojiPicker from 'emoji-picker-react'
 import { useEffect, useState } from 'react'
+import { v4 } from 'uuid'
 
 export default function AddCollectionModal({ modal, setCollection }) {
   const [emojiPickerOn, setEmojiPickerOn] = useState(false)
@@ -22,9 +23,11 @@ export default function AddCollectionModal({ modal, setCollection }) {
 
   const handleCreateCollection = () => {
     setCollection(prev => [...prev, {
+      id: v4(),
       title,
       emoji: selectedEmoji,
       color,
+      cards: [],
     }])
     modal(false)
   }

@@ -3,8 +3,8 @@ import { useLocation, useNavigate, useOutletContext } from 'react-router-dom'
 
 export default function HomePage() {
   return (
-    <div className="page flex flex-col h-full">
-      <h1>HomePage</h1>
+    <div className="flex flex-col h-full page">
+      <h1 className="page-title">HomePage</h1>
     </div>
   )
 }

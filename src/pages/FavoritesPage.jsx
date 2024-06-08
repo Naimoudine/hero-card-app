@@ -7,8 +7,8 @@ export default function FavoritesPage() {
 
   return (
     <div className="page">
-      <h1 className="text-4xl text-white font-semibold mb-8">Favorites</h1>
-      <div className="flex flex-wrap gap-8">
+      <h1 className="page-title">Favorites</h1>
+      <div className="card-collection">
         {favorites.map(favorite => <FavPresentationCard key={favorite.id} hero={favorite} />)}
       </div>
     </div>

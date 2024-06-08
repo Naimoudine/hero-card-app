@@ -2,10 +2,15 @@ import { useEffect, useState } from 'react'
 import { useLoaderData, useLocation, useOutletContext } from 'react-router-dom'
 import Tilt from 'react-parallax-tilt'
 import HeroCard from '../components/HeroCard'
+import AllCollectionsModal from '../components/AllCollectionsModal'
 
 export default function HeroPage() {
   const [favMsg, setFavMsg] = useState('')
-  const { selectedHeroData, favorites, setFavorites } = useOutletContext()
+  const [collectionMsg, setCollectionMsg] = useState('')
+  const [collectionsModalOn, setCollectionsModalOn] = useState(false)
+  const [cardsAdded, setCardsAdded] = useState(false)
+
+  const { selectedHeroData, favorites, setFavorites, collection } = useOutletContext()
 
   const loaderData = useLoaderData()
 
@@ -23,15 +28,18 @@ export default function HeroPage() {
     }
   }
 
+  // useEffect(() => {}, [collection, cardsAdded])
+
   return (
-    <div className="h-full w-full flex flex-col items-center justify-center">
-      <p className="mb-4">{favMsg || ''}</p>
+    <div className="flex flex-col items-center justify-center w-full h-full">
+      <p className="mb-4">{favMsg || collectionMsg || ''}</p>
       <Tilt glareEnable={true} glareBorderRadius="0.5rem">
         <HeroCard hero={loaderData ? loaderData[0] : selectedHeroData[0]} />
       </Tilt>
-      <div className="flex mt-8">
-        <button className="cta bg-gray-400" type="button" onClick={handleFavorite}>Add to favorite</button>
-        <button className="cta bg-gray-400 ml-2" type="button">Add to Collection</button>
+      <div className="relative flex mt-8">
+        <button className="bg-gray-400 cta" type="button" onClick={handleFavorite}>Add to favorite</button>
+        <button className="ml-2 bg-gray-400 cta" type="button" onClick={() => setCollectionsModalOn(true)}>Add to Collection</button>
+        {collectionsModalOn && <AllCollectionsModal collection={collection} hero={loaderData ? loaderData[0] : selectedHeroData[0]} setCardsAdded={setCardsAdded} setCollectionsModalOn={setCollectionsModalOn} setCollectionMsg={setCollectionMsg} />}
       </div>
     </div>
   )

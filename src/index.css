@@ -32,19 +32,31 @@
 }
 @tailwind utilities;
 @layer utilities {
-  .page {
-    @apply pt-8 px-4
-  }
   .nav-item {
     @apply mb-4
   }
+
+  .page {
+    @apply pt-8 px-4
+  }
+
+  .page-title {
+    @apply text-4xl text-white font-semibold mb-8
+  }
+
   .cta {
     @apply px-4 py-2 rounded-lg
   }
+
   .search-item {
     @apply flex items-center p-4 border-b border-gray-200 cursor-pointer
   }
+
   .search-item:last-child {
     @apply flex items-center p-4 border-b-0 cursor-pointer
+  }
+
+  .card-collection {
+    @apply flex flex-wrap gap-8
   }
 }
