@@ -14,7 +14,7 @@ export default function CollectionsPage() {
       <h1 className="page-title">Collections</h1>
       <div className="card-collection">
         {collection?.map((col, id) => (
-          <div className="flex flex-col items-center justify-center rounded-lg w-[200px] h-[150px] cursor-pointer" style={{ backgroundColor: `${col.color}` }} key={id} onClick={() => navigate(`/collections/${col.id}`)}>
+          <div className={!col.color ? `flex flex-col items-center justify-center rounded-lg w-[200px] h-[150px] cursor-pointer border-2 border-white` : `flex flex-col items-center justify-center rounded-lg w-[200px] h-[150px] cursor-pointer`} style={{ backgroundColor: `${col.color}` }} key={id} onClick={() => navigate(`/collections/${col.id}`)}>
             <p>
               {col.emoji.emoji}
               {' '}
